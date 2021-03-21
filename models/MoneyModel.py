@@ -7,8 +7,9 @@ class Person(Agent):
     """An agent with fixed initial wealth."""
     def __init__(self, unique_id, model, income):
         super().__init__(unique_id, model)
-        self.wealth = 5
+        self.wealth = 5         # todo make initial wealth randomly generated. maybe take generations into account. would have to step thru lots of years tho
         self.income = income
+        # TODO add randomly generated name functionality so that it is easier to read output
         print(f'Agent number {self.unique_id} makes ${self.income}.')
 
     def step(self):
@@ -66,5 +67,6 @@ class MoneyModel(Model):
             self.corp_schedule.add(corp)
 
     def step(self):
+        # TODO move all the print statements into a file or something somewhere more digestable
         self.agent_schedule.step()
         self.corp_schedule.step()

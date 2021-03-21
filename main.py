@@ -20,6 +20,7 @@ if __name__ == "__main__":
     #     print(f"Corporation {corp.unique_id}'s wealth: {corp.wealth}")
     # for agent in model.agent_schedule.agents:
     #     print(f"Agent {agent.unique_id}'s wealth: {agent.wealth}")
+    # todo maybe randomly generate parameters and run a bunch of times, check at end of each run if target variable is reached and save the params that gave the best ones
     show_income_distribution_results(num_iterations=1000, num_agents=10, num_corps=3)
 
 
