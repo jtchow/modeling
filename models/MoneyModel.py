@@ -1,12 +1,14 @@
 from mesa import Agent, Model
 from mesa.time import RandomActivation
+from utils import generate_incomes
 
 
 class Person(Agent):
     """An agent with fixed initial wealth."""
-    def __init__(self, unique_id, model):
+    def __init__(self, unique_id, model, income):
         super().__init__(unique_id, model)
         self.wealth = 5
+        self.income = income
 
     def step(self):
         print(f'I am agent number {self.unique_id} and I have {self.wealth} dollars')
@@ -23,7 +25,7 @@ class Person(Agent):
 
 
 class Corporation(Agent):
-    """An agent with fixed initial wealth."""
+    """An corporation agent with fixed initial wealth."""
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
         self.wealth = 100
@@ -47,11 +49,13 @@ class Corporation(Agent):
 class MoneyModel(Model):
     """A model with some number of agents."""
     def __init__(self, num_agents, num_corps):
+        # todo move these into a config yaml or something, or better yet randomly generated
         self.num_agents = num_agents
         self.num_corps = num_corps
         self.agent_schedule = RandomActivation(self)
         self.corp_schedule = RandomActivation(self)
-        # Create agents
+        self.base_income = 80000
+        self.incomes = generate_incomes(num_agents, 80000)
         for i in range(self.num_agents):
             a = Person(i, self)
             self.agent_schedule.add(a)
