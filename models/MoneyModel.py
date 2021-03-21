@@ -9,6 +9,7 @@ class Person(Agent):
         super().__init__(unique_id, model)
         self.wealth = 5
         self.income = income
+        print(f'Agent number {self.unique_id} makes ${self.income}.')
 
     def step(self):
         print(f'I am agent number {self.unique_id} and I have {self.wealth} dollars')
@@ -57,7 +58,8 @@ class MoneyModel(Model):
         self.base_income = 80000
         self.incomes = generate_incomes(num_agents, 80000)
         for i in range(self.num_agents):
-            a = Person(i, self)
+            person_income = self.incomes[i]
+            a = Person(i, self, person_income)
             self.agent_schedule.add(a)
 
         for i in range(self.num_corps):
