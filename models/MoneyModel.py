@@ -55,7 +55,6 @@ class MoneyModel(Model):
         self.num_corps = num_corps
         self.agent_schedule = RandomActivation(self)
         self.corp_schedule = RandomActivation(self)
-        self.base_income = 80000
         self.incomes = generate_incomes(num_agents, 80000)
         for i in range(self.num_agents):
             person_income = self.incomes[i]
